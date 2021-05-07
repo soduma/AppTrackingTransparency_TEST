@@ -6,14 +6,30 @@
 //
 
 import UIKit
+import AppTrackingTransparency
+import AdSupport
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var label: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        if #available(iOS 14.0, *) {
+            ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+                // Tracking authorization completed. Start loading ads here.
+                // loadAd()
+                DispatchQueue.main.async {
+                    self.label.text = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+                }
+            })
+        }
     }
-
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+//        label.text = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+    }
 }
-
