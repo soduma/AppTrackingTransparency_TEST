@@ -11,7 +11,7 @@ import AdSupport
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var textField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class ViewController: UIViewController {
                 // Tracking authorization completed. Start loading ads here.
                 // loadAd()
                 DispatchQueue.main.async {
-                    self.label.text = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+                    self.textField.text = ASIdentifierManager.shared().advertisingIdentifier.uuidString
                 }
             })
         }
